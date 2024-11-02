@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useDebounce } from "@/hooks/useDebounce";
-import { Input } from "../ui/input";
-import { Spinner } from "../spinner";
 import { CheckCircle, XCircle } from "lucide-react";
+
 import { BASE_URL } from "@/lib/base-url";
+import { useDebounce } from "@/hooks/useDebounce";
 import { generateBaseUsername } from "@/lib/helper";
 
+import { Input } from "../ui/input";
+import { Spinner } from "../spinner";
+
 const CheckUsername = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isAvailable, setIsAvailable] = React.useState<boolean | null>(null);
-  const [suggestions, setSuggestions] = React.useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const { register, watch, setError, setValue, clearErrors } = useFormContext();
   const username = watch("username");
 
@@ -54,14 +56,15 @@ const CheckUsername = () => {
     setValue("username", suggestion);
     clearErrors("username");
   };
+
   return (
     <div className="w-full relative">
       <Input
         placeholder="Enter username"
         disabled={isLoading}
-        className="form--input focus:boder-0
-                   dark:border-[rgba(255,255,255,.5)]"
+        className="form--input focus:boder-0 dark:border-[rgba(255,255,255,.5)]"
         {...register("username")}
+        autoComplete="off"
       />
       {/* Loader and validation icons */}
       <div className="absolute right-3 top-2">
@@ -76,11 +79,8 @@ const CheckUsername = () => {
       {/* Suggested usernames */}
       {isAvailable === false && suggestions.length > 0 && (
         <div className="mt-2 text-sm">
-          <p className="mb-1">Suggestions</p>
-          <ul
-            className="flex flex-row gap-3 flex-wrap ml-[1px]
-          text-base text-primary"
-          >
+          <p className="mb-1 text-muted-foreground">Suggestions</p>
+          <ul className="flex flex-row gap-3 flex-wrap ml-[1px]text-base text-primary">
             {suggestions?.map((suggestion) => (
               <li
                 role="button"

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
+
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const dmSans = Urbanist({ subsets: ["latin"] });
 
@@ -18,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-background", dmSans.className)}>{children}</body>
+      <body className={cn("bg-background", dmSans.className)}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

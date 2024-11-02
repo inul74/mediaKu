@@ -3,15 +3,18 @@
 import { z } from "zod";
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
+import { useToast } from "@/hooks/use-toast";
 import { Spinner } from "@/components/spinner";
+import { doCredentialLogin } from "@/app/actions/auth.action";
 
 const LoginForm = () => {
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const formSchema = z.object({
     email: z
@@ -32,16 +35,29 @@ const LoginForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-      console.log(values);
+      await doCredentialLogin({
+        email: values.email,
+        password: values.password,
+      });
+      toast({
+        title: "Success",
+        description: "Login successful",
+        variant: "default",
+      });
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Error",
+        description: "Failed to login",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <FormProvider {...form}>
+    <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex h-full w-full flex-col items-center justify-center space-y-3"
@@ -57,6 +73,7 @@ const LoginForm = () => {
                   disabled={isLoading}
                   className="form--input focus:boder-0 dark:border-[rgba(255,255,255,.5)]"
                   {...field}
+                  autoComplete="off"
                 />
               </FormControl>
             </FormItem>
@@ -73,6 +90,7 @@ const LoginForm = () => {
                   disabled={isLoading}
                   className="form--input focus:boder-0 dark:border-[rgba(255,255,255,.5)]"
                   {...field}
+                  autoComplete="off"
                 />
               </FormControl>
             </FormItem>
@@ -91,7 +109,7 @@ const LoginForm = () => {
           Sign In
         </Button>
       </form>
-    </FormProvider>
+    </Form>
   );
 };
 

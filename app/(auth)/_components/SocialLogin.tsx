@@ -2,10 +2,11 @@ import React from "react";
 
 import { Button } from "@/components/ui/button";
 import GoogleLogo from "@/public/assets/google-logo.svg";
+import { doSocialLogin } from "@/app/actions/auth.action";
 
 const SocialLogin = () => {
   return (
-    <form>
+    <form action={doSocialLogin}>
       <Button
         variant="outline"
         type="submit"
