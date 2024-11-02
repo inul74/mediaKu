@@ -49,7 +49,7 @@ const Modal: React.FC<PropsType> = ({
 
       <Dialog modal open={isOpen} onOpenChange={handleClose}>
         <DialogContent
-          className="min-h-[350px] max-h-[600px] !max-w-[600px] pt-5 pb-10 !rounded-2xl overflow-y-auto"
+          className="min-h-[350px] max-h-[600px] !max-w-[600px] pt-4 pb-8 !rounded-2xl overflow-y-auto"
           aria-describedby={undefined}
         >
           <DialogHeader className="dialog_top_header !p-0 w-full">

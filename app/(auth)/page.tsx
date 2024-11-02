@@ -1,7 +1,10 @@
 import React from "react";
 
-import SocialLogin from "./_components/SocialLogin";
 import Logo from "@/components/logo";
+
+import LoginForm from "./_components/LoginForm";
+import SocialLogin from "./_components/SocialLogin";
+import RegisterFormModal from "./_components/RegisterFormModal";
 
 const Page = () => {
   return (
@@ -9,7 +12,7 @@ const Page = () => {
       <main className="w-full h-full">
         <div className="w-full flex flex-col-reverse lg:flex-row-reverse items-center h-full">
           <div className="flex-shrink flex-1 lg:min-w-[437px] lg:max-w-[760px] h-full p-4 flex flex-col">
-            <div className="mt-4 mb-6">
+            <div className="mt-4 mb-4">
               <h1 className="leading-[84px] text-[68px] font-black">
                 Going on now
               </h1>
@@ -35,12 +38,12 @@ const Page = () => {
               </div>
 
               <div className="sign_with_email py-[12px]">
-                {/* <LoginForm /> */}
+                <LoginForm />
               </div>
 
-              <div className="mt-10">
+              <div className="mt-8">
                 <h5>Dont have an account</h5>
-                {/* <RegisterFormModal /> */}
+                <RegisterFormModal />
               </div>
             </div>
           </div>
