@@ -12,7 +12,6 @@ import {
   User,
 } from "lucide-react";
 
-import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
 import {
@@ -22,8 +21,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import SidebarItem from "./_common/SidebarItem";
+import Logo from "@/components/logo";
 import { doLogout } from "@/app/actions/auth.action";
+import { useCurrentUserContext } from "@/context/currentuser-provider";
+
+import SidebarItem from "./_common/SidebarItem";
 
 interface MenuType {
   label: string;
@@ -33,8 +35,20 @@ interface MenuType {
 }
 
 const Sidebar = () => {
-  const isLoading = false;
   const router = useRouter();
+  const { data, isLoading } = useCurrentUserContext();
+  const fetchedUser: UserType = data?.currentUser ?? ({} as UserType);
+  const username = fetchedUser?.username ?? "";
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Spinner size="icon" />
+      </div>
+    );
+  }
+
+  console.log(fetchedUser?.hasNotification, "fetchedUser?.hasNotification");
 
   const MENU_LIST: MenuType[] = [
     {
@@ -59,7 +73,7 @@ const Sidebar = () => {
     },
     {
       label: "Profile",
-      href: `/username`,
+      href: `/${username}`,
       icon: User,
     },
     {
@@ -120,9 +134,9 @@ const Sidebar = () => {
                   <SidebarItem
                     isUser={true}
                     userInfo={{
-                      username: "username",
-                      name: "User",
-                      profileImgUrl: "",
+                      username: fetchedUser?.username || "",
+                      name: fetchedUser?.name || "",
+                      profileImgUrl: fetchedUser?.profileImage || "",
                     }}
                   />
                 </DropdownMenuTrigger>
@@ -135,7 +149,7 @@ const Sidebar = () => {
                       >
                         Log out{" "}
                         <span className="block max-w-[120px] truncate ml-1">
-                          name
+                          {fetchedUser?.name}
                         </span>
                       </button>
                     </form>

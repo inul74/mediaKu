@@ -4,6 +4,8 @@ import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
+import QueryProvider from "@/context/query-provider";
+import SessionProviders from "@/context/session-provider";
 
 const dmSans = Urbanist({ subsets: ["latin"] });
 
@@ -24,8 +26,12 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={cn("bg-background", dmSans.className)}
       >
-        {children}
-        <Toaster />
+        <SessionProviders>
+          <QueryProvider>
+            {children}
+            <Toaster />
+          </QueryProvider>
+        </SessionProviders>
       </body>
     </html>
   );
