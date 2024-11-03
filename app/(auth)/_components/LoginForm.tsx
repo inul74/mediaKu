@@ -73,7 +73,6 @@ const LoginForm = () => {
                   disabled={isLoading}
                   className="form--input focus:boder-0 dark:border-[rgba(255,255,255,.5)]"
                   {...field}
-                  autoComplete="off"
                 />
               </FormControl>
             </FormItem>
@@ -86,11 +85,11 @@ const LoginForm = () => {
             <FormItem className="w-full">
               <FormControl>
                 <Input
+                  type="password"
                   placeholder="Password"
                   disabled={isLoading}
                   className="form--input focus:boder-0 dark:border-[rgba(255,255,255,.5)]"
                   {...field}
-                  autoComplete="off"
                 />
               </FormControl>
             </FormItem>

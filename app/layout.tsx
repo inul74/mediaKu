@@ -20,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-background", dmSans.className)}>
+      <body
+        suppressHydrationWarning={true}
+        className={cn("bg-background", dmSans.className)}
+      >
         {children}
         <Toaster />
       </body>
