@@ -2,6 +2,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth";
+import ModalProvider from "@/context/modal-provider";
 import { CurrentUserProvider } from "@/context/currentuser-provider";
 
 import Sidebar from "../_components/Sidebar";
@@ -19,6 +20,7 @@ async function MainLayout({
 
   return (
     <CurrentUserProvider>
+      <ModalProvider />
       <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-7xl">
           <div className="flex items-start justify-center h-full">

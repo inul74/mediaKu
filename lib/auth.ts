@@ -17,7 +17,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
       profile: async (profile) => {
-        console.log(profile, "profile");
         const baseUsername = generateBaseUsername(profile.name, profile.email);
         const uniqueUsername = await ensureUniqueUsername(baseUsername);
         return {
