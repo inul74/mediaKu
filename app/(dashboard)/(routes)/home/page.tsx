@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
 
-import { auth } from "@/lib/auth";
+import Header from "../../_components/_common/Header";
 
 const Home = async () => {
-  const session = await auth();
-  console.log(session, "session");
-  return <Fragment>{session?.user?.username}</Fragment>;
+  return (
+    <Fragment>
+      <Header label="Home" />
+    </Fragment>
+  );
 };
 
 export default Home;

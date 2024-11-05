@@ -7,6 +7,7 @@ import { CurrentUserProvider } from "@/context/currentuser-provider";
 
 import Sidebar from "../_components/Sidebar";
 import Rightbar from "../_components/Rightbar";
+import EditProfileModal from "../_components/EditProfileModal";
 
 async function MainLayout({
   children,
@@ -21,6 +22,7 @@ async function MainLayout({
   return (
     <CurrentUserProvider>
       <ModalProvider />
+      <EditProfileModal />
       <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-7xl">
           <div className="flex items-start justify-center h-full">
