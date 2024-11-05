@@ -1,6 +1,7 @@
+import { NextResponse } from "next/server";
+
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prismadb";
-import { NextResponse } from "next/server";
 
 export async function GET(request: Request, context: any) {
   const { params } = context;
@@ -47,6 +48,7 @@ export async function GET(request: Request, context: any) {
         },
       },
     });
+
     if (!existingUser) {
       return NextResponse.json(
         { message: "User not found", status: "error" },

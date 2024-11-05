@@ -2,8 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { BASE_URL } from "@/lib/base-url";
 import fetcher from "@/lib/fetcher";
+import { BASE_URL } from "@/lib/base-url";
 
 const useUser = (username: string) => {
   const url = username ? `${BASE_URL}/api/users/${username}` : null;

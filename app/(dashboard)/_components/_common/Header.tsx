@@ -23,6 +23,7 @@ const Header: React.FC<PropsType> = ({
   const handleBack = useCallback(() => {
     router.back();
   }, [router]);
+
   return (
     <div
       className={cn("p-5", {
@@ -35,8 +36,7 @@ const Header: React.FC<PropsType> = ({
             onClick={handleBack}
             color="currentColor"
             size={20}
-            className="cursor-pointer
-             hover:opacity-70 transition"
+            className="cursor-pointer hover:opacity-70 transition"
           />
         )}
         {label ? (

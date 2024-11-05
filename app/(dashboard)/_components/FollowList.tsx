@@ -60,7 +60,7 @@ const FollowList = () => {
                       <h5 className="font-semibold text-[15.5px] transition">
                         {user?.name}
                       </h5>
-                      {/* {user?.subscription?.plan === PLAN_TYPE.PRO && <Badge />} */}
+                      {user?.subscription?.plan === PLAN_TYPE.PRO && <Badge />}
                     </div>
                   </Link>
                   <div className="w-full block">

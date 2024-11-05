@@ -3,8 +3,8 @@
 import { z } from "zod";
 import axios from "axios";
 import React, { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -16,10 +16,10 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 
+import Modal from "@/components/modal";
 import { BASE_URL } from "@/lib/base-url";
 import { useToast } from "@/hooks/use-toast";
 import { Spinner } from "@/components/spinner";
-import Modal from "@/components/modal";
 import CheckUsername from "@/components/check-username";
 
 const RegisterFormModal = () => {
