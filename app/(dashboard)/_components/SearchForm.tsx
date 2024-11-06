@@ -37,7 +37,7 @@ const SearchForm = () => {
           </div>
           <div className="flex-1">
             <Input
-              className="rounded-full w-full h-full border-0 !outline-none !ring-0"
+              className="rounded-full w-full h-full border-0 !outline-none !ring-0 !border-none !shadow-none"
               type="text"
               placeholder="Search"
               value={searchTerm}

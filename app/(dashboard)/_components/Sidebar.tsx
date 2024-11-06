@@ -48,8 +48,6 @@ const Sidebar = () => {
     );
   }
 
-  console.log(fetchedUser?.hasNotification, "fetchedUser?.hasNotification");
-
   const MENU_LIST: MenuType[] = [
     {
       label: "Home",
@@ -65,7 +63,7 @@ const Sidebar = () => {
       label: "Notifications",
       href: "/notifications",
       icon: Bell,
-      alert: true,
+      alert: fetchedUser?.hasNotification || false,
     },
     {
       label: "Premium",
