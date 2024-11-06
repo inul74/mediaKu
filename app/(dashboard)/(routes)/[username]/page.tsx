@@ -8,6 +8,7 @@ import { Spinner } from "@/components/spinner";
 
 import UserBio from "../../_components/UserBio";
 import UserHero from "../../_components/UserHero";
+import PostFeed from "../../_components/PostFeed";
 import Header from "../../_components/_common/Header";
 
 interface PropType {
@@ -20,8 +21,6 @@ const SingleUser = (props: PropType) => {
   const { username } = props.params;
   const { data, isLoading } = useUser(username);
   const fetchedUser: UserType = data?.data;
-
-  console.log(fetchedUser);
 
   if (isLoading || !data) {
     return (
@@ -40,6 +39,7 @@ const SingleUser = (props: PropType) => {
       <Header label={fetchedUser?.name || ""} showBackArrow />
       <UserHero user={fetchedUser} />
       <UserBio user={fetchedUser} />
+      <PostFeed userId={fetchedUser?.id} />
     </Fragment>
   );
 };

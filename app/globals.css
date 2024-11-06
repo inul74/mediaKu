@@ -7,6 +7,10 @@ body {
   height: 100%;
 }
 
+.public-DraftStyleDefault-block {
+  margin: 0 !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

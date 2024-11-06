@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import useFollow from "@/hooks/useFollow";
-import { Button } from "@/components/ui/button";
+
 import { cn } from "@/lib/utils";
+import useFollow from "@/hooks/useFollow";
 import { Spinner } from "@/components/spinner";
+import { Button } from "@/components/ui/button";
 
 interface PropsType {
   userId: number;

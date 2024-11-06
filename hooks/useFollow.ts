@@ -2,16 +2,16 @@
 
 import { useCallback, useState, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useCurrentUserContext } from "@/context/currentuser-provider";
+
 import { followUser } from "@/app/actions/follow.action";
+import { useCurrentUserContext } from "@/context/currentuser-provider";
+
 import { toast } from "./use-toast";
 
 const useFollow = (userId: number, username: string) => {
   const { data } = useCurrentUserContext();
   const currentUser = data?.currentUser || ({} as UserType);
-
   const queryClient = useQueryClient();
-
   const [loading, setLoading] = useState(false);
 
   const isFollowing = useMemo(() => {
