@@ -2,17 +2,8 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import {
-  Bell,
-  Feather,
-  Home,
-  LucideIcon,
-  Search,
-  Settings,
-  User,
-} from "lucide-react";
+import { Bell, Home, LucideIcon, Search, Settings, User } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
 import {
   DropdownMenu,
@@ -34,7 +25,8 @@ interface MenuType {
   alert?: boolean;
 }
 
-const Sidebar = () => {
+const Sidebar = (props: { isPro: boolean }) => {
+  const { isPro } = props;
   const router = useRouter();
   const { data, isLoading } = useCurrentUserContext();
   const fetchedUser: UserType = data?.currentUser ?? ({} as UserType);
@@ -65,10 +57,14 @@ const Sidebar = () => {
       icon: Bell,
       alert: fetchedUser?.hasNotification || false,
     },
-    {
-      label: "Premium",
-      href: "#premium",
-    },
+    ...(isPro
+      ? []
+      : [
+          {
+            label: "Premium",
+            href: "#premium",
+          },
+        ]),
     {
       label: "Profile",
       href: `/${username}`,
@@ -86,7 +82,7 @@ const Sidebar = () => {
       <div className="flex flex-col h-full items-start">
         <div className="space-y-0 h-full pb-3 flex flex-col justify-between w-auto lg:w-[230px]">
           <div className="flex-1">
-            <div className="my-2 pt-1 px-4">
+            <div className="my-2 pt-2 pb-4 px-4">
               <Logo
                 className="!h-8 !w-8 cursor-pointer"
                 width="auto"
@@ -105,23 +101,6 @@ const Sidebar = () => {
                 />
               );
             })}
-            <div className="w-full pt-4">
-              <div>
-                <Button
-                  variant="brandPrimary"
-                  size="icon"
-                  className="mt-0 lg:hidden rounded-full ml-1 h-14 w-14 p-4 flex items-center justify-center hover:bg-opacity-80 transition"
-                >
-                  <Feather size={24} color="white" />
-                </Button>
-                <Button
-                  variant="brandPrimary"
-                  className="w-full hidden lg:block !pt-4 !py-2 !h-auto !text-white transition font-semibold text-[20px]"
-                >
-                  Post
-                </Button>
-              </div>
-            </div>
           </div>
           <div className="shrink w-full flex items-center justify-between">
             {isLoading ? (

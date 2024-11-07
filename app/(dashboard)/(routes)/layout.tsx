@@ -2,7 +2,9 @@ import React from "react";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth";
+import { PLAN_TYPE } from "@/constants/pricing-plans";
 import ModalProvider from "@/context/modal-provider";
+import { checkUserSubscription } from "@/app/actions/subcription";
 import { CurrentUserProvider } from "@/context/currentuser-provider";
 
 import Sidebar from "../_components/Sidebar";
@@ -15,6 +17,9 @@ async function MainLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const plan = await checkUserSubscription();
+  const isPro = plan === PLAN_TYPE.PRO ? true : false;
+
   if (!session?.user) {
     return redirect("/");
   }
@@ -27,7 +32,7 @@ async function MainLayout({
         <div className="container h-full mx-auto xl:px-30 max-w-7xl">
           <div className="flex items-start justify-center h-full">
             <div className="shrink-0 flex-[0.10] lg:flex-[0.28] relative">
-              <Sidebar />
+              <Sidebar {...{ isPro }} />
             </div>
             <div className="flex flex-row h-screen flex-1 gap-0">
               {/* <Mainbar /> */}
@@ -38,7 +43,7 @@ async function MainLayout({
               <div className="relative hidden lg:flex shrink-0 h-screen">
                 <hr className="w-[1px] fixed h-screen bg-[#eee] dark:bg-[rgb(47,51,54)]" />
                 <div className="w-full pl-8">
-                  <Rightbar />
+                  <Rightbar {...{ isPro }} />
                 </div>
               </div>
             </div>

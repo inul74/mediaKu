@@ -52,7 +52,10 @@ const SidebarItem: React.FC<PropsType> = ({
       onClick={handleClick}
       className="flex w-full flex-row items-center"
     >
-      <div className="relative rounded-full h-14 w-14 flez items-center justify-center p-3 hover:bg-slate-300 hover:bg-opacity-10 cursor-pointer lg:hidden">
+      <div
+        className="relative rounded-full h-14 w-14 flez items-center justify-center p-3 hover:bg-slate-300 hover:bg-opacity-10 cursor-pointer lg:hidden"
+        onClick={handleOpenModal}
+      >
         {isUser && userInfo ? (
           <Avatar>
             <AvatarImage
